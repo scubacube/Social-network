@@ -1,3 +1,8 @@
+## Social network
+Social network using API https://social-network.samuraijs.com/doc from scratches -- includes logging, messaging and following users features.
+
+React / Redux / Thunk / Axios
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
