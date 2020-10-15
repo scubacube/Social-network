@@ -1,5 +1,5 @@
 import {messagesReducer} from './MessagesReducer';
-import {ProfileReducer} from './ProfileReducer';
+import {profileReducer} from "./ProfileReducer";
 
 export let store = {
     _state: {
@@ -56,7 +56,7 @@ export let store = {
     },
     dispatch(action) {
         this._state.dialogs = messagesReducer(action, this._state.dialogs);
-        this._state.profile = ProfileReducer(action, this._state.profile);
+        this._state.profile = profileReducer(action, this._state.profile);
         this._rerender(this._state);
     }
 }

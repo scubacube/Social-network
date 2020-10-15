@@ -1,6 +1,5 @@
 import React from "react";
 import Message from "./Message";
-import {addMessageAC, onChangeAC} from "../../redux/MessagesReducer";
 import DialogUser from "./DialogUser";
 import styles from './Messages.module.css'
 
@@ -10,15 +9,14 @@ function Messages(props) {
 
     let input = React.createRef();
 
-    let addMessageC = () => {
-        let text = input.current.value;
-        props.dispatch(addMessageAC());
+    let onAddMessageC = () => {
+        props.addMessage();
         input.current.value = '';
     };
 
     let onChangeC = () => {
         let act = input.current.value;
-        props.dispatch(onChangeAC(act));
+        props.changeC(act);
     };
 
     return (
@@ -27,8 +25,8 @@ function Messages(props) {
                 <div className={styles.messages}>
                     <div>{messages}</div>
                     <div className={styles.sendMessage}>
-                        <textarea onChange={onChangeC} ref={input}></textarea>
-                        <button onClick={addMessageC}>Send</button>
+                        <textarea onChange={onChangeC} ref={input}>{props.state.newMessageText}</textarea>
+                        <button onClick={onAddMessageC}>Send</button>
                     </div>
                 </div>
             </div>

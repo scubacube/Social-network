@@ -1,14 +1,27 @@
-import React from "react";
-import ProfileInfo from "./ProfileInfo";
-import Posts from "./Posts";
+import React from 'react';
+import Post from './Post';
+
 
 function Profile(props) {
+    let posts = props.state.posts.map(el => <Post postText={el.postText} />);
+    const bla = React.createRef();
+
+    const onPostChange = () => {
+        let txt = bla.current.value;
+        props.postChange(txt);
+    }
+
+    const onSendPost = () => {
+        props.sendPost()
+        bla.current.value = "";
+    }
     return (
         <div>
-            <ProfileInfo />
-            <Posts posts={props.state.posts} dispatch={props.dispatch}/>
+            <div>{posts}</div>
+            <textarea onChange={onPostChange} ref={bla}></textarea>
+            <button onClick={onSendPost}>Post</button>
         </div>
-    )
+    );
 }
 
 export default Profile;

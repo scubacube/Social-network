@@ -1,13 +1,19 @@
-import React from "react";
+import React from 'react';
 import Profile from './Profile';
+import {onPostChangeAC, addPostAC} from './../../redux/ProfileReducer';
 
-class ProfileContainer extends React.Component {
-
-    render() {
-        return (
-            <Profile state={this.props.state} dispatch={this.props.dispatch}/>
-        )
+function ProfileContainer(props) {
+    let postChange = (txt) => {
+        props.dispatch(onPostChangeAC(txt));
     }
+    let sendPost = () => {
+        props.dispatch(addPostAC());
+    }
+
+
+    return <Profile state={props.state}
+                    postChange={postChange}
+                    sendPost={sendPost}/>
 }
 
 export default ProfileContainer;

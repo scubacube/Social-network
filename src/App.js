@@ -8,6 +8,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 
 function App(props) {
+
   return (
       <div className="app_wrapper">
           <div className="container">
@@ -17,7 +18,9 @@ function App(props) {
                   <div className="app_wrapper_container">
                       <Route path="/Profile" render={() => <ProfileContainer  state={props.state.profile}
                                                                               dispatch={props.dispatch}/>}/>
+
                       <Route path="/Users" render={() => < UsersContainer props={props.state.users}/>}/>
+
                       <Route path="/Messages" render={() => < MessagesContainer state={props.state.dialogs}
                                                                                 dispatch={props.dispatch}/>}/>
                   </div>
