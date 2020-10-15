@@ -5,7 +5,7 @@ class MessagesContainer extends React.Component {
 
     render() {
         return (
-            <Messages state={this.props.state} addMessage={this.props.addMessage} onChange={this.props.onChange}/>
+            <Messages state={this.props.state} dispatch={this.props.dispatch}/>
         )
     }
 }

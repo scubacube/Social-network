@@ -1,8 +1,13 @@
 import React from "react";
+import ProfileInfo from "./ProfileInfo";
+import Posts from "./Posts";
 
-function Profile() {
+function Profile(props) {
     return (
-        <div>dfdf</div>
+        <div>
+            <ProfileInfo />
+            <Posts posts={props.state.posts} dispatch={props.dispatch}/>
+        </div>
     )
 }
 

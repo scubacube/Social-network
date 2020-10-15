@@ -2,9 +2,10 @@ import React from "react";
 import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
+
     render() {
         return (
-            <Profile />
+            <Profile state={this.props.state} dispatch={this.props.dispatch}/>
         )
     }
 }

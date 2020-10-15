@@ -15,11 +15,11 @@ function App(props) {
               <div className="row">
                   <Sidebar props={props.state.sidebar}/>
                   <div className="app_wrapper_container">
-                      <Route path="/Profile" render={() => <ProfileContainer  props={props.state.profile}/>}/>
+                      <Route path="/Profile" render={() => <ProfileContainer  state={props.state.profile}
+                                                                              dispatch={props.dispatch}/>}/>
                       <Route path="/Users" render={() => < UsersContainer props={props.state.users}/>}/>
                       <Route path="/Messages" render={() => < MessagesContainer state={props.state.dialogs}
-                                                                                addMessage={props.addMessage}
-                                                                                onChange={props.onChange}/>}/>
+                                                                                dispatch={props.dispatch}/>}/>
                   </div>
               </div>
           </div>
