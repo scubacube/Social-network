@@ -3,7 +3,7 @@ import Post from './Post';
 
 
 function Profile(props) {
-    let posts = props.state.posts.map(el => <Post postText={el.postText} />);
+    let posts = props.posts.map(el => <Post postText={el.postText} />);
     const bla = React.createRef();
 
     const onPostChange = () => {

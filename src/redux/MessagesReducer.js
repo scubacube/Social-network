@@ -41,15 +41,23 @@ export let messagesReducer = (state = initState, action) => {
             let newMessage = {
                 id: 10,
                 messageText: state.newMessageText
-            }
-            state.messages.push(newMessage);
-            state.newMessageText = '';
+            };
+            let stateCopy = {...state};
+            stateCopy.messages = [...state.messages];
+            stateCopy.newMessageText = {...state.newMessageText}
+
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = '';
+
+            return stateCopy;
         }
-            return state;
+
         case ON_CHANGE: {
-            state.newMessageText = action.act;
+            let stateCopy = {...state};
+            stateCopy.messages = [...state.messages];
+            stateCopy.newMessageText = action.act;
+            return stateCopy;
         }
-            return state;
         default: return state;
     }
 }

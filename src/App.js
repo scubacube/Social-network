@@ -12,19 +12,16 @@ function App(props) {
   return (
       <div className="app_wrapper">
           <div className="container">
-              <HeaderContainer/>
-              <div className="row">
-                  <Sidebar props={props.state.sidebar}/>
-                  <div className="app_wrapper_container">
-                      <Route path="/Profile" render={() => <ProfileContainer  state={props.state.profile}
-                                                                              dispatch={props.dispatch}/>}/>
 
-                      <Route path="/Users" render={() => < UsersContainer props={props.state.users}/>}/>
-
-                      <Route path="/Messages" render={() => < MessagesContainer state={props.state.dialogs}
-                                                                                dispatch={props.dispatch}/>}/>
+                  <HeaderContainer/>
+                  <div className="row">
+                      {/*<Sidebar />*/}
+                      <div className="app_wrapper_container">
+                          <Route path="/Profile" render={() => <ProfileContainer />}/>
+                          <Route path="/Users" render={() => < UsersContainer />}/>
+                          <Route path="/Messages" render={() => < MessagesContainer />}/>
+                      </div>
                   </div>
-              </div>
           </div>
       </div>
   );
