@@ -1,0 +1,12 @@
+.sidebar {
+    background-color: rgb(77, 135, 241);
+}
+.sidebar ul {
+    padding: 0 20px;
+}
+.sidebar ul li {
+    color: white;
+    padding: 8px 30px;
+    line-height: 40px;
+    display: block;
+}

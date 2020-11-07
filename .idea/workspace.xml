@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="635f0cb8-59d5-403f-93bc-a8464c53fa0f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Alesha.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Header/Header.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Header/HeaderContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Messages/DialogUser.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Messages/Message.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Messages/Messages.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Messages/Messages.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Messages/MessagesContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Profile/Post.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Profile/ProfileContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Users/User.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Users/Users.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Users/Users.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Users/UsersContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sidebar/Sibebar.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sidebar/Sidebar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sidebar/SidebarContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Новая папка/Profile/Post.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Новая папка/Profile/Posts.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Новая папка/Profile/Profile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Новая папка/Profile/Profile.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Новая папка/Profile/ProfileContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Новая папка/Profile/ProfileInfo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/MessagesReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/ProfileReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/UsersReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/reduxStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/sidebarReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/state.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1jSnKg4I86y8JEXxZ2cV7fm9WhE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Frontend/Второй заход/Полный курс по JavaScript + React - с нуля до результата/project_1/konspekt.txt" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="liveEdit" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Alesha\WebstormProjects\fix\src\components\sidebar" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="635f0cb8-59d5-403f-93bc-a8464c53fa0f" name="Default Changelist" comment="" />
+      <created>1603806297644</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603806297644</updated>
+      <workItem from="1603806301793" duration="18575000" />
+      <workItem from="1603925274084" duration="7523000" />
+      <workItem from="1604258728066" duration="8736000" />
+      <workItem from="1604524757984" duration="3418000" />
+      <workItem from="1604664742043" duration="1577000" />
+      <workItem from="1604750660405" duration="10146000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="409" y="103" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604525331191">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="409" y="103" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604525331191" />
+    <state x="672" y="295" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604751755740">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="672" y="295" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1604751755740" />
+    <state x="686" y="213" key="FileChooserDialogImpl" timestamp="1604763485397">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="686" y="213" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604763485397" />
+    <state x="606" y="152" key="SettingsEditor" timestamp="1604259424950">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="606" y="152" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1604259424950" />
+    <state x="532" y="237" key="run.anything.popup" timestamp="1603925552267">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="532" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603925552267" />
+  </component>
+</project>

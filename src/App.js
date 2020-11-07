@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import HeaderContainer from "./components/Header/HeaderContainer";
+import Sidebar from "./components/sidebar/Sidebar";
+import { Route } from 'react-router-dom';
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import MessagesContainer from "./components/Messages/MessagesContainer";
+import SidebarContainer from "./components/sidebar/SidebarContainer";
 
-function App() {
+function App(props) {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="app_wrapper">
+        <div className="container">
+
+          <HeaderContainer/>
+          <div className="row">
+            <SidebarContainer/>
+            <div className="app_wrapper_container">
+              <Route path="/Profile" render={() => <ProfileContainer />}/>
+              <Route path="/Users" render={() => < UsersContainer />}/>
+              <Route path="/Messages" render={() => < MessagesContainer />}/>
+            </div>
+          </div>
+        </div>
+      </div>
   );
 }
 

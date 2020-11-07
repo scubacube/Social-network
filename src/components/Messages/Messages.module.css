@@ -1,0 +1,19 @@
+.messagesContainer {
+    display: flex;
+}
+
+.dialogUsers {
+    width: 30%;
+    background-color: rgb(69, 117, 205);
+    color: #ddd;
+    padding: 20px 30px;
+}
+
+.messages {
+    width: 70%;
+    padding: 20px 30px;
+}
+
+.sendMessage {
+
+}
