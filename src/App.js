@@ -18,7 +18,7 @@ function App(props) {
           <div className="row">
             <SidebarContainer/>
             <div className="app_wrapper_container">
-              <Route path="/Profile" render={() => <ProfileContainer />}/>
+              <Route path="/Profile/:userId?" render={() => <ProfileContainer />}/>
               <Route path="/Users" render={() => < UsersContainer />}/>
               <Route path="/Messages" render={() => < MessagesContainer />}/>
             </div>

@@ -3,6 +3,7 @@ import User from "./User";
 import styles from "./Users.module.css";
 import userPhoto from "./../../assets/user.png";
 import loading from "./../../assets/spinner.svg";
+import {NavLink} from "react-router-dom";
 
 let Users = (props) => {
         let pageCount = Math.ceil(props.totalCount/props.pageSize);
@@ -11,6 +12,7 @@ let Users = (props) => {
         for (let i = 1; i <= pageCount; i++) {
             arrayOfPages.push(i);
         }
+
         return <>
                 <span>
                     {
@@ -29,13 +31,15 @@ let Users = (props) => {
                     {
                         props.users.users.map(e => <div key={e.id} className={styles.user}>
                             <span>
-                                <img src={ e.photos.small != null ? e.photos.small : userPhoto} alt=""/>
+                                <NavLink to={`/Profile/${e.id}`}>
+                                    <img src={ e.photos.small != null ? e.photos.small : userPhoto} alt=""/>
+                                </NavLink>
                                 <span>{e.name}</span>
                                 <span>{e.status}</span>
                                 <div>
                                     {
-                                        e.followed ? <button onClick={ () => {props.followCB(e.id)} }>Unfollow</button>
-                                            : <button onClick={ () => {props.unfollowCB(e.id)} }>Follow</button>
+                                        e.followed ? <button onClick={ () => {props.unfollowCB(e.id)} }>Unfollow</button>
+                                            : <button onClick={ () => {props.followCB(e.id)} }>Follow</button>
                                     }
                                 </div>
                             </span>

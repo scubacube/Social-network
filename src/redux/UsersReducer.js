@@ -56,7 +56,6 @@ export let unFollowAC = (id) => {
 }
 
 export let userReducer = (state = initState, action) => {
-
     switch (action.type) {
         case FOLLOW:
             return {
@@ -72,13 +71,10 @@ export let userReducer = (state = initState, action) => {
             return {
                 ...state,
                 users: state.users.map(e => {
-
                     if(e.id === action.id) {
-
                         return{...e, followed: false}
                     }
                     return e;
-
                 })
             }
         case SET_USERS: {

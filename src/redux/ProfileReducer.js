@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const ON_POST_CHANGE = 'ON-POST-CHANGE';
+const SET_PROFILE = 'SET_PROFILE';
 
 let initState = {
     posts: [
@@ -9,7 +10,8 @@ let initState = {
         {id: 4, postText: "fourth", likeCount: 10},
         {id: 5, postText: "fifth", likeCount: 10}
     ],
-    newPostText: "enter some text here..."
+    newPostText: "enter some text here...",
+    prof: null
 }
 
 export const addPostAC = () => {
@@ -23,12 +25,18 @@ export const addPostAC = () => {
 export const onPostChangeAC = (txt) => {
     return ({
         type: ON_POST_CHANGE,
-        txt: txt
+        txt
     })
 }
 
-export const profileReducer = (state = initState, action) => {
+export const setProfileAC = (profile) => {
+    return ({
+       type: SET_PROFILE,
+        profile
+    });
+}
 
+export const profileReducer = (state = initState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -50,6 +58,18 @@ export const profileReducer = (state = initState, action) => {
 
             return stateCopy;
         }
+        case SET_PROFILE: {
+            // return {
+            //     ...state,
+            //     prof: action.profile
+            // }
+
+            let stateCopy = {...state};
+            stateCopy.prof = action.profile;
+
+            return stateCopy;
+        }
+
         default: return state;
     }
 }

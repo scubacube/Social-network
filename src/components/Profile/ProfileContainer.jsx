@@ -1,26 +1,32 @@
 import React from 'react';
 import Profile from './Profile';
-import {onPostChangeAC, addPostAC} from './../../redux/ProfileReducer';
+import {onPostChangeAC, addPostAC, setProfileAC} from './../../redux/ProfileReducer';
 import {connect} from "react-redux";
+import * as axios from "axios";
+import {withRouter} from "react-router";
 
-// function ProfileContainer(props) {
-//     let postChange = (txt) => {
-//         props.dispatch(onPostChangeAC(txt));
-//     }
-//     let sendPost = () => {
-//         props.dispatch(addPostAC());
-//     }
-//
-//
-//     return <Profile state={props.state}
-//                     postChange={postChange}
-//                     sendPost={sendPost}/>
-// }
+class ProfileContainer extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = 2;
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+ userId).then(resp =>
+        {
+            this.props.setProfile(resp.data);
+        });
+    }
+    render() {
+        return <Profile {...this.props} profile={this.props.profile}/>
+    }
+}
 
 let mapStateToProps = (state) => {
     return {
-        posts: state.profile.posts
-
+        profile: state.profile
     }
 }
 
@@ -31,10 +37,13 @@ let mapDispatchToProps = (dispatch) => {
         },
         sendPost: () => {
             dispatch(addPostAC());
+        },
+        setProfile: (profile) => {
+            dispatch(setProfileAC(profile));
         }
     }
 }
 
-let ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+let WithIrlData = withRouter(ProfileContainer);
 
-export default ProfileContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(WithIrlData);
