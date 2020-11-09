@@ -6,6 +6,7 @@ import loading from "./../../assets/spinner.svg";
 import {NavLink} from "react-router-dom";
 
 let Users = (props) => {
+        // debugger
         let pageCount = Math.ceil(props.totalCount/props.pageSize);
         let arrayOfPages = [];
 
@@ -38,8 +39,11 @@ let Users = (props) => {
                                 <span>{e.status}</span>
                                 <div>
                                     {
-                                        e.followed ? <button onClick={ () => {props.unfollowCB(e.id)} }>Unfollow</button>
-                                            : <button onClick={ () => {props.followCB(e.id)} }>Follow</button>
+                                        e.followed ?
+                                            <button disabled={props.isFollowingInProgress.some(id => id === e.id)}
+                                                    onClick={ () => {props.unfollowCB(e.id)} }>Unfollow</button>
+                                            : <button disabled={props.isFollowingInProgress.some(id => id === e.id)}
+                                                      onClick={ () => {props.followCB(e.id)} }>Follow</button>
                                     }
                                 </div>
                             </span>

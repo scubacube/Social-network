@@ -1,16 +1,20 @@
+import {act} from "@testing-library/react";
+
 const SET_USERS = "SET-USERS";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
-const IS_FETCHING = "IS_FETCHING"
+const IS_FETCHING = "IS_FETCHING";
+const IS_FOLLOWING = "IS_FOLLOWING";
 
 let initState = {
     users: [],
     pageSize: 5,
     totalCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: false,
+    isFollowingInProgress: []
 }
 
 export let setUsersAC = (users) => {
@@ -23,6 +27,14 @@ export let setUsersAC = (users) => {
 export let isFetchingAC = (isFetching) => {
     return ({
         type: IS_FETCHING,
+        isFetching
+    })
+}
+
+export let followingAC = (userId, isFetching) => {
+    return ({
+        type: IS_FOLLOWING,
+        userId,
         isFetching
     })
 }
@@ -57,6 +69,13 @@ export let unFollowAC = (id) => {
 
 export let userReducer = (state = initState, action) => {
     switch (action.type) {
+        case IS_FOLLOWING:
+            return {
+                ...state,
+                isFollowingInProgress: action.isFetching
+                    ? [...state.isFollowingInProgress, action.userId]
+                    : [state.isFollowingInProgress.filter(id => id != action.userId)]
+            }
         case FOLLOW:
             return {
                 ...state,

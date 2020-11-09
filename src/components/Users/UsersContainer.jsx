@@ -6,11 +6,12 @@ import {
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
-    unFollowAC
+    unFollowAC,
+    followingAC
 } from "../../redux/UsersReducer";
 import Users from "./Users";
 import * as axios from "axios";
-
+import {usersAPI} from "../API/Api";
 
 
 class UsersAPI extends React.Component {
@@ -19,30 +20,49 @@ class UsersAPI extends React.Component {
     }
     componentDidMount() {
         this.props.isFetchingFunc(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}
-        &count=${this.props.pageSize}`).then(resp =>
+        usersAPI.getUsersAPI(this.props.currentPage, this.props.pageSize)
+            .then(resp =>
         {
             this.props.isFetchingFunc(false);
-            this.props.setUser(resp.data.items);
-            this.props.setTotalUsersCount(resp.data.totalCount)
+            this.props.setUser(resp.items);
+            this.props.setTotalUsersCount(resp.totalCount)
         });
     }
     onChanged = (cp) => {
         this.props.isFetchingFunc(true);
         this.props.setCurrentPage(cp);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${cp}
-        &count=${this.props.pageSize}`).then(resp =>
+        usersAPI.getUsersAPI(cp, this.props.pageSize).then(resp =>
         {
             this.props.isFetchingFunc(false);
-            this.props.setUser(resp.data.items)
+            this.props.setUser(resp.items)
         });
     }
+
     followCB = (id) => {
-        this.props.follow(id);
+        this.followingCB(id, true);
+        usersAPI.followUserAPI(id).then(resp =>
+        {
+            if (resp.data.resultCode === 0) {
+                this.props.follow(id);
+            }
+            this.followingCB(id, false);
+        });
     }
     unfollowCB = (id) => {
-        this.props.unfollow(id);
+        this.followingCB(id, true);
+        usersAPI.unfollowUserAPI(`${id}`).then(resp =>
+        {
+            if (resp.data.resultCode === 0) {
+                this.props.unfollow(id);
+            }
+            this.followingCB(id, false);
+        });
     }
+
+    followingCB = (id, s) => {
+        this.props.following(id, s);
+    }
+
     render() {
         return <Users onChanged={this.onChanged}
                       users={this.props.users}
@@ -50,7 +70,9 @@ class UsersAPI extends React.Component {
                       unfollowCB={this.unfollowCB}
                       totalCount={this.props.totalCount}
                       pageSize={this.props.pageSize}
-                      isFetching={this.props.isFetching}/>
+                      isFetching={this.props.isFetching}
+                      isFollowingInProgress={this.props.isFollowingInProgress}
+                      followingCB={this.followingCB}/>
     }
 }
 
@@ -59,7 +81,8 @@ let mapStateToProps = (state) => {
         users: state.users,
         pageSize: state.users.pageSize,
         totalCount: state.users.totalCount,
-        currentPage: state.users.currentPage
+        currentPage: state.users.currentPage,
+        isFollowingInProgress: state.users.isFollowingInProgress
     }
 }
 
@@ -92,5 +115,6 @@ export default connect(mapStateToProps, {
     setUser: setUsersAC,
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
-    isFetchingFunc: isFetchingAC
+    isFetchingFunc: isFetchingAC,
+    following: followingAC
 })(UsersAPI);
