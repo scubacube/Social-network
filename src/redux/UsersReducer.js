@@ -1,4 +1,5 @@
 import {act} from "@testing-library/react";
+import {usersAPI} from "../components/API/Api";
 
 const SET_USERS = "SET-USERS";
 const FOLLOW = "FOLLOW";
@@ -15,6 +16,18 @@ let initState = {
     currentPage: 1,
     isFetching: false,
     isFollowingInProgress: []
+}
+
+export const setUserThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(isFetchingAC(true));
+        usersAPI.getUsersAPI(currentPage, pageSize)
+            .then(resp => {
+                dispatch(isFetchingAC(false));
+                dispatch(setUsersAC(resp.items));
+                dispatch(setTotalUsersCountAC(resp.totalCount));
+            });
+    }
 }
 
 export let setUsersAC = (users) => {

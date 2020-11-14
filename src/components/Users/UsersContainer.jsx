@@ -7,7 +7,7 @@ import {
     setTotalUsersCountAC,
     setUsersAC,
     unFollowAC,
-    followingAC
+    followingAC, setUserThunkCreator
 } from "../../redux/UsersReducer";
 import Users from "./Users";
 import * as axios from "axios";
@@ -19,14 +19,7 @@ class UsersAPI extends React.Component {
         super(props);
     }
     componentDidMount() {
-        this.props.isFetchingFunc(true);
-        usersAPI.getUsersAPI(this.props.currentPage, this.props.pageSize)
-            .then(resp =>
-        {
-            this.props.isFetchingFunc(false);
-            this.props.setUser(resp.items);
-            this.props.setTotalUsersCount(resp.totalCount)
-        });
+        this.props.setUserThunkCreator(this.props.currentPage, this.props.pageSize);
     }
     onChanged = (cp) => {
         this.props.isFetchingFunc(true);
@@ -116,5 +109,6 @@ export default connect(mapStateToProps, {
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
     isFetchingFunc: isFetchingAC,
-    following: followingAC
+    following: followingAC,
+    setUserThunkCreator
 })(UsersAPI);

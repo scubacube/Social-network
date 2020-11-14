@@ -1,4 +1,5 @@
 import {act} from "@testing-library/react";
+import {authAPI} from "../components/API/Api";
 
 const AUTH_ME = "AUTH_ME";
 
@@ -11,7 +12,17 @@ let initState = {
     isSignedIn: false
 }
 
-export const authMeAC = (data) => {
+export const authThunkCreator = () => (dispatch) => {
+    authAPI.authMeAPI().then(resp =>
+    {
+        if (resp.data.resultCode === 0) {
+            let {email, id, login} = resp.data.data
+            dispatch(authMe({email, id, login}));
+        }
+    });
+}
+
+export const authMe = (data) => {
     return ({
         type: AUTH_ME,
         data

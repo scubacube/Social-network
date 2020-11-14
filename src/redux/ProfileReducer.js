@@ -1,3 +1,5 @@
+import {profileAPI} from "../components/API/Api";
+
 const ADD_POST = 'ADD-POST';
 const ON_POST_CHANGE = 'ON-POST-CHANGE';
 const SET_PROFILE = 'SET_PROFILE';
@@ -12,6 +14,16 @@ let initState = {
     ],
     newPostText: "enter some text here...",
     prof: null
+}
+
+export const setProfileThunkCreator = (userId) => (dispatch) => {
+    if (!userId) {
+        userId = 2;
+    }
+    profileAPI.setProfileAPI(userId).then(resp =>
+    {
+        dispatch(setProfile(resp.data));
+    });
 }
 
 export const addPostAC = () => {
@@ -29,7 +41,7 @@ export const onPostChangeAC = (txt) => {
     })
 }
 
-export const setProfileAC = (profile) => {
+export const setProfile = (profile) => {
     return ({
        type: SET_PROFILE,
         profile
