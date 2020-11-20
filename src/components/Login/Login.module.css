@@ -1,0 +1,13 @@
+.header {
+    background-color: rgb(132, 172, 248);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.logo {
+    max-width: 100px;
+}
+.login {
+    float: right;
+}

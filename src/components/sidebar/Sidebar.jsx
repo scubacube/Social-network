@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 
 function Sidebar(props) {
 
-    let list = props.sidebar.map(e => <li><NavLink to={`/${e.name}`}>{e.name}</NavLink></li>);
+    let list = props.sidebar.map(e => <li key={e.id}><NavLink to={`/${e.name}`}>{e.name}</NavLink></li>);
     return (
         <div className={classes.sidebar}>
             <ul>

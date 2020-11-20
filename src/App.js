@@ -7,6 +7,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import SidebarContainer from "./components/sidebar/SidebarContainer";
+import LoginContainer from "./components/Login/LoginContainer";
 
 function App(props) {
 
@@ -19,8 +20,9 @@ function App(props) {
             <SidebarContainer/>
             <div className="app_wrapper_container">
               <Route path="/Profile/:userId?" render={() => <ProfileContainer />}/>
-              <Route path="/Users" render={() => < UsersContainer />}/>
-              <Route path="/Messages" render={() => < MessagesContainer />}/>
+                <Route path="/Users" render={() => < UsersContainer />}/>
+                <Route path="/Messages" render={() => < MessagesContainer />}/>
+                <Route path="/Login" render={() => < LoginContainer />}/>
             </div>
           </div>
         </div>

@@ -10,9 +10,9 @@ import {
     followingAC, setUserThunkCreator
 } from "../../redux/UsersReducer";
 import Users from "./Users";
-import * as axios from "axios";
 import {usersAPI} from "../API/Api";
-
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersAPI extends React.Component {
     constructor(props) {
@@ -30,7 +30,6 @@ class UsersAPI extends React.Component {
             this.props.setUser(resp.items)
         });
     }
-
     followCB = (id) => {
         this.followingCB(id, true);
         usersAPI.followUserAPI(id).then(resp =>
@@ -51,7 +50,6 @@ class UsersAPI extends React.Component {
             this.followingCB(id, false);
         });
     }
-
     followingCB = (id, s) => {
         this.props.following(id, s);
     }
@@ -69,6 +67,8 @@ class UsersAPI extends React.Component {
     }
 }
 
+// let AuthRedirectComponent = withAuthRedirect(UsersAPI);
+
 let mapStateToProps = (state) => {
     return {
         users: state.users,
@@ -79,30 +79,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (id) => {
-//             dispatch(followAC(id));
-//         },
-//         unfollow: (id) => {
-//             dispatch(unFollowAC(id));
-//         },
-//         setUser: (setU) => {
-//             dispatch(setUsersAC(setU));
-//         },
-//         setCurrentPage: (currentPage) => {
-//             dispatch(setCurrentPageAC(currentPage));
-//         },
-//         setTotalUsersCount: (tCount) => {
-//             dispatch(setTotalUsersCountAC(tCount));
-//         },
-//         isFetchingFunc: (isF) => {
-//             dispatch(isFetchingAC(isF));
-//         }
-//     }
-// }
-
-export default connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
     follow: followAC,
     unfollow: unFollowAC,
     setUser: setUsersAC,
@@ -111,4 +88,17 @@ export default connect(mapStateToProps, {
     isFetchingFunc: isFetchingAC,
     following: followingAC,
     setUserThunkCreator
-})(UsersAPI);
+}),
+    withAuthRedirect)
+(UsersAPI);
+
+// export default connect(mapStateToProps, {
+//     follow: followAC,
+//     unfollow: unFollowAC,
+//     setUser: setUsersAC,
+//     setCurrentPage: setCurrentPageAC,
+//     setTotalUsersCount: setTotalUsersCountAC,
+//     isFetchingFunc: isFetchingAC,
+//     following: followingAC,
+//     setUserThunkCreator
+// })(AuthRedirectComponent);

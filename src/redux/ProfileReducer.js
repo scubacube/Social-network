@@ -1,8 +1,10 @@
-import {profileAPI} from "../components/API/Api";
+import {authAPI, profileAPI} from "../components/API/Api";
+import {act} from "@testing-library/react";
 
 const ADD_POST = 'ADD-POST';
-const ON_POST_CHANGE = 'ON-POST-CHANGE';
 const SET_PROFILE = 'SET_PROFILE';
+const SET_STATUS = 'SET_STATUS';
+const SEND_LOGIN = 'SEND_LOGIN';
 
 let initState = {
     posts: [
@@ -13,12 +15,17 @@ let initState = {
         {id: 5, postText: "fifth", likeCount: 10}
     ],
     newPostText: "enter some text here...",
-    prof: null
+    prof: null,
+    status: "write here something...",
+    login: {
+        login: "",
+        password: ""
+    }
 }
 
 export const setProfileThunkCreator = (userId) => (dispatch) => {
     if (!userId) {
-        userId = 2;
+        userId = 8858;
     }
     profileAPI.setProfileAPI(userId).then(resp =>
     {
@@ -26,18 +33,47 @@ export const setProfileThunkCreator = (userId) => (dispatch) => {
     });
 }
 
-export const addPostAC = () => {
+export const loginThunkCreator = (login) => (dispatch) => {
+    authAPI.loginAPI(login).then(r => {dispatch(sendLogin(r.data))});
+}
+
+export const setStatusThunkCreator = (userId) => (dispatch) => {
+    if (!userId) {
+        userId = 2;
+    }
+    profileAPI.setStatusAPI(userId).then(r => {
+        dispatch(setStatus(r.data))
+    });
+}
+
+export const updateStatusThunkCreator = (status) => (dispatch) => {
+    profileAPI.updateStatusAPI(status).then(r => {
+        if (r.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+
+    });
+}
+
+export const addPostAC = (post) => {
     return (
         {
-            type: ADD_POST
+            type: ADD_POST,
+            post
         }
     );
 }
-
-export const onPostChangeAC = (txt) => {
+export const setStatus = (status) => {
     return ({
-        type: ON_POST_CHANGE,
-        txt
+        type: SET_STATUS,
+        status
+    });
+}
+
+export const sendLogin = (login) => {
+    return ({
+        type: SEND_LOGIN,
+        login
     })
 }
 
@@ -53,35 +89,27 @@ export const profileReducer = (state = initState, action) => {
         case ADD_POST: {
             let newPost = {
                 id: 10,
-                postText: state.newPostText,
+                postText: action.post,
                 likeCount: 0
             }
             let stateCopy = {...state};
             stateCopy.posts = [...state.posts];
-
             stateCopy.posts.push(newPost);
-            stateCopy.newPostText = "";
-
-            return stateCopy;
-        }
-        case ON_POST_CHANGE: {
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.txt;
 
             return stateCopy;
         }
         case SET_PROFILE: {
-            // return {
-            //     ...state,
-            //     prof: action.profile
-            // }
-
             let stateCopy = {...state};
             stateCopy.prof = action.profile;
 
             return stateCopy;
         }
+        case SET_STATUS: {
+            let stateCopy = {...state};
+            stateCopy.status = action.status;
 
+            return stateCopy;
+        }
         default: return state;
     }
 }

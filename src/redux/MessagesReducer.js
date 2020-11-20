@@ -1,4 +1,3 @@
-const ON_CHANGE = "ON-CHANGE";
 const ADD_MESSAGE = "ADD-MESSAGE";
 
 let initState = {
@@ -18,20 +17,13 @@ let initState = {
         {id: 4, messageText: "jhjh"},
         {id: 5, messageText: "popopo"},
         {id: 6, messageText: "tttt"},
-    ],
-    newMessageText: "enter some text here..."
+    ]
 }
 
-export const addMessageAC = () => {
+export const addMessageAC = (newMessageText) => {
     return ({
-        type: ADD_MESSAGE
-    });
-}
-
-export const onChangeAC = (txt) => {
-    return ({
-        type: ON_CHANGE,
-        act: txt
+        type: ADD_MESSAGE,
+        newMessageText
     });
 }
 
@@ -40,22 +32,14 @@ export let messagesReducer = (state = initState, action) => {
         case ADD_MESSAGE:  {
             let newMessage = {
                 id: 10,
-                messageText: state.newMessageText
+                messageText: action.newMessageText
             };
             let stateCopy = {...state};
             stateCopy.messages = [...state.messages];
-            stateCopy.newMessageText = {...state.newMessageText}
+            stateCopy.newMessageText = {...action.newMessageText}
 
             stateCopy.messages.push(newMessage);
-            stateCopy.newMessageText = '';
 
-            return stateCopy;
-        }
-
-        case ON_CHANGE: {
-            let stateCopy = {...state};
-            stateCopy.messages = [...state.messages];
-            stateCopy.newMessageText = action.act;
             return stateCopy;
         }
         default: return state;

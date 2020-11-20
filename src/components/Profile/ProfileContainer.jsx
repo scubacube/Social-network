@@ -1,10 +1,11 @@
 import React from 'react';
 import Profile from './Profile';
-import {onPostChangeAC, addPostAC, setProfile, setProfileThunkCreator} from './../../redux/ProfileReducer';
+import {onPostChangeAC, addPostAC, setProfileThunkCreator, setStatusThunkCreator, loginThunkCreator} from './../../redux/ProfileReducer';
 import {connect} from "react-redux";
-import * as axios from "axios";
-import {withRouter} from "react-router";
-import {profileAPI} from "../API/Api";
+import {Redirect, withRouter} from "react-router";
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
+import {updateStatusThunkCreator} from "../../redux/ProfileReducer";
 
 class ProfileContainer extends React.Component {
     constructor(props) {
@@ -13,43 +14,45 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         this.props.setProfileThunkCreator(userId);
-        // if (!userId) {
-        //     userId = 2;
-        // }
-        // profileAPI.setProfileAPI(userId).then(resp =>
-        // {
-        //     this.props.setProfile(resp.data);
-        // });
-
+        this.props.setStatusThunkCreator(userId);
     }
     render() {
-        return <Profile {...this.props} profile={this.props.profile}/>
+        return <Profile {...this.props}
+                        profile={this.props.profile}
+                        status={this.props.status}
+                        updateStatus={this.props.updateStatusThunkCreator}
+                        sendLogin={this.props.loginThunkCreator}/>
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        profile: state.profile
+        profile: state.profile,
+        status: state.profile.status
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        postChange: (txt) => {
-            dispatch(onPostChangeAC(txt));
-        },
-        sendPost: () => {
-            dispatch(addPostAC());
-        },
-        setProfile: (profile) => {
-            dispatch(setProfile(profile));
+        sendPost: (post) => {
+            dispatch(addPostAC(post));
         },
         setProfileThunkCreator: (userId) => {
             dispatch(setProfileThunkCreator(userId));
+        },
+        setStatusThunkCreator: (userId) => {
+            dispatch(setStatusThunkCreator(userId));
+        },
+        updateStatusThunkCreator: (status) => {
+            dispatch(updateStatusThunkCreator(status))
+        },
+        loginThunkCreator: (login) => {
+            dispatch(loginThunkCreator(login));
         }
     }
 }
 
-let WithIrlData = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, mapDispatchToProps)(WithIrlData);
+export default compose(connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
+    withAuthRedirect)
+(ProfileContainer);

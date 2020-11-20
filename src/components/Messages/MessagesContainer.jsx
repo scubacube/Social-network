@@ -2,18 +2,8 @@ import React from "react";
 import Messages from './Messages';
 import {addMessageAC, onChangeAC} from './../../redux/MessagesReducer';
 import {connect} from "react-redux";
-
-// function MessagesContainer(props) {
-//     let addMessage = () => {
-//         props.dispatch(addMessageAC());
-//     }
-//     let changeC = (act) => {
-//         props.dispatch(onChangeAC(act));
-//     }
-//     return (
-//         <Messages state={props.state} addMessage={addMessage} changeC={changeC}/>
-//         )
-// }
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return {
@@ -23,17 +13,24 @@ let mapStateToProps = (state) => {
     }
 }
 
+// let sendMessage = (s) => {
+//     addMessage();
+// }
+
 let mapDispatchToProps = (dispatch) => {
     return {
-        addMessage: () => {
-            dispatch(addMessageAC())
-        },
-        changeC: (act) => {
-            dispatch(onChangeAC(act))
+        addMessage: (newMessageText) => {
+            dispatch(addMessageAC(newMessageText))
         }
     }
 }
 
-let MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
 
-export default MessagesContainer;
+// let AuthRedirectComponent = withAuthRedirect(Messages);
+// let MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
+// export default MessagesContainer;
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect)
+(Messages);

@@ -2,18 +2,14 @@ import React from 'react';
 import Post from './Post';
 import loading from "../../assets/spinner.svg";
 import styles from "./Profile.module.css";
+import ProfileStatus from "./ProfileStatus";
+import {Field, reduxForm} from "redux-form";
 
 function Profile(props) {
     let posts = props.profile.posts.map(el => <Post postText={el.postText} />);
-    const bla = React.createRef();
 
-    const onPostChange = () => {
-        let txt = bla.current.value;
-        props.postChange(txt);
-    }
-    const onSendPost = () => {
-        props.sendPost()
-        bla.current.value = "";
+    const onSendPost = (posts) => {
+        props.sendPost(posts.sendPost);
     }
 
     if (props.profile.prof === null) {
@@ -22,12 +18,22 @@ function Profile(props) {
     return (
         <div className={styles}>
             <img className={styles.avatar} src={props.profile.prof.photos.large} alt=""/>
-            <div>{props.profile.prof.aboutMe}</div>
+            <br/><br/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            <br/>
             <div>{posts}</div>
-            <textarea onChange={onPostChange} ref={bla}></textarea>
-            <button onClick={onSendPost}>Post</button>
+            <SendPostFormReduxForm onSubmit={onSendPost}/>
         </div>
     );
 }
+let sendPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field name={"sendPost"} component={"textarea"}/>
+            <button>Post</button>
+        </form>
+    )
+};
+const SendPostFormReduxForm = reduxForm({ form: "posts" })(sendPostForm);
 
 export default Profile;
