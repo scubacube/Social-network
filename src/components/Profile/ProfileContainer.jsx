@@ -6,6 +6,7 @@ import {Redirect, withRouter} from "react-router";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
 import {updateStatusThunkCreator} from "../../redux/ProfileReducer";
+import {logoutThunkCreator} from "../../redux/HeaderReducer";
 
 class ProfileContainer extends React.Component {
     constructor(props) {
@@ -46,8 +47,8 @@ let mapDispatchToProps = (dispatch) => {
         updateStatusThunkCreator: (status) => {
             dispatch(updateStatusThunkCreator(status))
         },
-        loginThunkCreator: (login) => {
-            dispatch(loginThunkCreator(login));
+        logoutThunkCreator: () => {
+            dispatch(logoutThunkCreator());
         }
     }
 }

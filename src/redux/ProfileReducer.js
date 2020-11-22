@@ -32,10 +32,10 @@ export const setProfileThunkCreator = (userId) => (dispatch) => {
         dispatch(setProfile(resp.data));
     });
 }
-
-export const loginThunkCreator = (login) => (dispatch) => {
-    authAPI.loginAPI(login).then(r => {dispatch(sendLogin(r.data))});
-}
+//
+// export const loginThunkCreator = (login) => (dispatch) => {
+//     authAPI.loginAPI(login).then(r => {dispatch(sendLogin(r.data))});
+// }
 
 export const setStatusThunkCreator = (userId) => (dispatch) => {
     if (!userId) {

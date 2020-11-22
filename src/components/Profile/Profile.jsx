@@ -4,6 +4,11 @@ import loading from "../../assets/spinner.svg";
 import styles from "./Profile.module.css";
 import ProfileStatus from "./ProfileStatus";
 import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
+import {Element} from "../Сommon/FormsControls";
+
+const maxLength10 = maxLengthCreator(10);
+const Textarea = Element("textarea");
 
 function Profile(props) {
     let posts = props.profile.posts.map(el => <Post postText={el.postText} />);
@@ -26,10 +31,13 @@ function Profile(props) {
         </div>
     );
 }
+
+
 let sendPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field name={"sendPost"} component={"textarea"}/>
+            <Field name={"sendPost"} component={Textarea}
+                   validate={[required, maxLength10]} placeholder={"post message"}/>
             <button>Post</button>
         </form>
     )
