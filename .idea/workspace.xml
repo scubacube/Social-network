@@ -17,24 +17,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="635f0cb8-59d5-403f-93bc-a8464c53fa0f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/test/Test.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Сommon/FormsControls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Сommon/FormsControls.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/validators/validators.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/appReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HOC/withAuthRedirect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/HOC/withAuthRedirect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/API/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/API/Api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header/HeaderContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/HeaderContainer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login/LoginContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/LoginContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Messages/Messages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Messages/MessagesContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Messages/MessagesContainer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Profile/ProfileContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/ProfileContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Сommon/FormsControls.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Сommon/FormsControls.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/HeaderReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/HeaderReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/LoginReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/LoginReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/ProfileReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/ProfileReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reduxStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reduxStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,21 +61,21 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
     <property name="full.screen.before.presentation.mode" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/redux" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Alesha\WebstormProjects\fix\src\assets" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Lenovo\Desktop\work\Social-network\src\components" />
       <recent name="C:\Users\Lenovo\Desktop\work\Social-network\src\redux" />
+      <recent name="C:\Users\Lenovo\Desktop\work\Social-network\src\components" />
       <recent name="C:\Users\Lenovo\Desktop\work\Social-network\src\components\Login" />
       <recent name="C:\Users\Alesha\WebstormProjects\fix\src\redux" />
       <recent name="C:\Users\Alesha\WebstormProjects\fix\src\components\Profile" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Alesha\WebstormProjects\fix\src\assets" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
@@ -111,7 +105,9 @@
       <workItem from="1605728199247" duration="10442000" />
       <workItem from="1605897239889" duration="11714000" />
       <workItem from="1605989988671" duration="6258000" />
-      <workItem from="1606072396912" duration="14098000" />
+      <workItem from="1606072396912" duration="15466000" />
+      <workItem from="1606162522728" duration="5600000" />
+      <workItem from="1606249499523" duration="3467000" />
     </task>
     <servers />
   </component>
@@ -184,19 +180,22 @@
     <state x="66" y="0" width="1139" height="680" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1605468758546" />
     <state x="-1255" y="314" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605369366794" />
     <state x="673" y="155" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605467317796" />
-    <state x="-1402" y="263" width="1023" height="777" key="find.popup" timestamp="1606080808267">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state x="345" y="16" width="687" height="664" key="find.popup" timestamp="1606164961581">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="-1402" y="263" width="1023" height="777" key="find.popup/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1606080808267" />
-    <state x="355" y="155" key="run.anything.popup" timestamp="1605994224224">
+    <state x="345" y="16" width="687" height="664" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1606164961581" />
+    <state x="355" y="155" key="run.anything.popup" timestamp="1606249844043">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="355" y="155" key="run.anything.popup/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1605994224224" />
+    <state x="355" y="155" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1606249844043" />
     <state x="532" y="237" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604873596107" />
-    <state x="359" y="3" width="840" height="677" key="search.everywhere.popup" timestamp="1605633147762">
+    <state x="359" y="3" width="840" height="677" key="search.everywhere.popup" timestamp="1606167094350">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="359" y="3" width="840" height="677" key="search.everywhere.popup/0.0.1280.680/-1920.0.1920.1040@0.0.1280.680" timestamp="1605633147762" />
+    <state x="359" y="3" width="840" height="677" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1606167094350" />
     <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604956133207" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 import {act} from "@testing-library/react";
 import {authAPI} from "../components/API/Api";
+import {stopSubmit} from "redux-form";
 
 const AUTH_ME = "AUTH_ME";
 const SEND_LOGIN = 'SEND_LOGIN';
@@ -12,14 +13,8 @@ let initState = {
     },
     isSignedIn: false
 }
-// let initState = {
-//     form: {
-//         login: "",
-//         password: ""
-//     }
-// }
 export const authThunkCreator = () => (dispatch) => {
-    authAPI.authMeAPI().then(resp =>
+    return authAPI.authMeAPI().then(resp =>
     {
         if (resp.data.resultCode === 0) {
             let {email, id, login} = resp.data.data
@@ -30,9 +25,10 @@ export const authThunkCreator = () => (dispatch) => {
 export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => {
     authAPI.loginAPI(email, password, rememberMe).then(r => {
         if (r.data.resultCode === 0) {
-            let {email, password, rememberMe} = r.data;
-            // dispatch(sendLogin(email, password, rememberMe));
             dispatch(authThunkCreator());
+        } else {
+            let messageError = r.data.messages.length > 0 ? r.data.messages[0] : "some error";
+            dispatch(stopSubmit("login", {_error: messageError}));
         }
     });
 }
@@ -40,8 +36,6 @@ export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => 
 export const logoutThunkCreator = () => (dispatch) => {
     authAPI.logoutAPI().then(r => {
         if (r.data.resultCode === 0) {
-            let {email, password, rememberMe} = r.data;
-            // dispatch(sendLogin(email, password, rememberMe));
             dispatch(authMe(null, null, null, false));
         }
     });

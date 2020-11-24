@@ -13,10 +13,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let sendMessage = (s) => {
-//     addMessage();
-// }
-
 let mapDispatchToProps = (dispatch) => {
     return {
         addMessage: (newMessageText) => {
@@ -24,11 +20,6 @@ let mapDispatchToProps = (dispatch) => {
         }
     }
 }
-
-
-// let AuthRedirectComponent = withAuthRedirect(Messages);
-// let MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-// export default MessagesContainer;
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),

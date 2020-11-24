@@ -6,6 +6,12 @@
 }
 
 .formControl.error span {
-
     color: red;
+}
+
+.formError {
+    border: 1px solid red;
+    padding: 5px 40px;
+    color: red;
+    display: inline-flex;
 }

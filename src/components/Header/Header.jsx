@@ -15,7 +15,6 @@ function Header(props) {
                         <button onClick={props.logoutThunkCreator}>Log out</button></span>
                     : <NavLink to={"/Login"}>Login</NavLink> }
             </div>
-
         </header>
     );
 }

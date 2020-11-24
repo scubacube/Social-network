@@ -8,6 +8,7 @@ import { Field, reduxForm } from 'redux-form'
 import handleSubmit from "redux-form/lib/handleSubmit";
 import { Element} from "../Сommon/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
+import styles from "./../Сommon/FormsControls.module.css";
 
 // class LoginContainer extends React.Component {
 //     constructor(props) {
@@ -71,6 +72,10 @@ const LoginForm = (props) => {
                        type={"checkbox"}
                        component={"input"}/> remember me
             </div>
+            { props.error && <div className={styles.formError}>
+                {props.error}
+                </div>
+            }
             <div>
                 <button>Login</button>
             </div>

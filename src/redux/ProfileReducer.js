@@ -24,18 +24,11 @@ let initState = {
 }
 
 export const setProfileThunkCreator = (userId) => (dispatch) => {
-    if (!userId) {
-        userId = 8858;
-    }
     profileAPI.setProfileAPI(userId).then(resp =>
     {
         dispatch(setProfile(resp.data));
     });
 }
-//
-// export const loginThunkCreator = (login) => (dispatch) => {
-//     authAPI.loginAPI(login).then(r => {dispatch(sendLogin(r.data))});
-// }
 
 export const setStatusThunkCreator = (userId) => (dispatch) => {
     if (!userId) {

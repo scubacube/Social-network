@@ -4,11 +4,9 @@ import {authMe, authThunkCreator, loginThunkCreator, logoutThunkCreator} from ".
 import {connect} from "react-redux";
 
 class HeaderContainer extends React.Component {
-
     componentDidMount() {
-        this.props.authThunkCreator();
+        // this.props.authThunkCreator();
     }
-
     render() {
         return (
             <Header {...this.props}/>
@@ -22,12 +20,9 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        // authMe: (data) => {
-        //     dispatch(authMe(data));
+        // authThunkCreator: () => {
+        //     dispatch(authThunkCreator());
         // },
-        authThunkCreator: () => {
-            dispatch(authThunkCreator());
-        },
         loginThunkCreator: (email, password, rememberMe) => {
             dispatch(loginThunkCreator(email, password, rememberMe));
         },
