@@ -15,7 +15,8 @@ let initState = {
     totalCount: 0,
     currentPage: 1,
     isFetching: false,
-    isFollowingInProgress: []
+    isFollowingInProgress: [],
+    fake: 0
 }
 
 export const setUserThunkCreator = (currentPage, pageSize) => {
@@ -80,8 +81,14 @@ export let unFollowAC = (id) => {
     })
 }
 
+export let FAKE = () => {
+    return({type: FAKE})
+}
+
 export let userReducer = (state = initState, action) => {
     switch (action.type) {
+        // case FAKE:
+        //     return {...state, fake: state.fake + 1}
         case IS_FOLLOWING:
             return {
                 ...state,

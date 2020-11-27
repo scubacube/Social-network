@@ -5,6 +5,11 @@ import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import { store } from "./redux/reduxStore";
 import {Provider} from "react-redux";
+import {FAKE} from "./redux/UsersReducer";
+
+// setInterval(() => {
+//     store.dispatch(FAKE)
+// }, 1000);
 
 let rerender = () => {
     ReactDOM.render(

@@ -13,6 +13,13 @@ import Users from "./Users";
 import {usersAPI} from "../API/Api";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getIsFollowingInProgress,
+    getPageSize,
+    getTotalCount, getUsers,
+    getUsersSelector
+} from "../../redux/userSelectors";
 
 class UsersAPI extends React.Component {
     constructor(props) {
@@ -71,11 +78,12 @@ class UsersAPI extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.users,
-        pageSize: state.users.pageSize,
-        totalCount: state.users.totalCount,
-        currentPage: state.users.currentPage,
-        isFollowingInProgress: state.users.isFollowingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalCount: getTotalCount(state),
+        currentPage: getCurrentPage(state),
+        isFollowingInProgress: getIsFollowingInProgress(state),
+        isFetching: state.users.isFetching
     }
 }
 

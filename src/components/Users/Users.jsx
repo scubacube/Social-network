@@ -6,7 +6,6 @@ import loading from "./../../assets/spinner.svg";
 import {NavLink} from "react-router-dom";
 
 let Users = (props) => {
-        // debugger
         let pageCount = Math.ceil(props.totalCount/props.pageSize);
         let arrayOfPages = [];
 
@@ -17,7 +16,7 @@ let Users = (props) => {
         return <>
                 <span>
                     {
-                        props.users.isFetching ? <img src={loading}/> : null
+                        props.isFetching ? <img src={loading}/> : null
                     }
                 </span>
                 <div>
@@ -30,7 +29,7 @@ let Users = (props) => {
                         }
                     </div>
                     {
-                        props.users.users.map(e => <div key={e.id} className={styles.user}>
+                        props.users.map(e => <div key={e.id} className={styles.user}>
                             <span>
                                 <NavLink to={`/Profile/${e.id}`}>
                                     <img src={ e.photos.small != null ? e.photos.small : userPhoto} alt=""/>

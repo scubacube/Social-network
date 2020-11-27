@@ -6,6 +6,7 @@ import ProfileStatus from "./ProfileStatus";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import {Element} from "../Сommon/FormsControls";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const maxLength10 = maxLengthCreator(10);
 const Textarea = Element("textarea");
@@ -24,7 +25,7 @@ function Profile(props) {
         <div className={styles}>
             <img className={styles.avatar} src={props.profile.prof.photos.large} alt=""/>
             <br/><br/>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             <br/>
             <div>{posts}</div>
             <SendPostFormReduxForm onSubmit={onSendPost}/>
