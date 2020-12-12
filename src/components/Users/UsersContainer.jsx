@@ -1,13 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    followAC,
     isFetchingAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
-    unFollowAC,
-    followingAC, setUserThunkCreator
+    followingAC, setUserThunkCreator, onChanged, follow, unfollow
 } from "../../redux/UsersReducer";
 import Users from "./Users";
 import {usersAPI} from "../API/Api";
@@ -18,7 +16,6 @@ import {
     getIsFollowingInProgress,
     getPageSize,
     getTotalCount, getUsers,
-    getUsersSelector
 } from "../../redux/userSelectors";
 
 class UsersAPI extends React.Component {
@@ -28,44 +25,13 @@ class UsersAPI extends React.Component {
     componentDidMount() {
         this.props.setUserThunkCreator(this.props.currentPage, this.props.pageSize);
     }
-    onChanged = (cp) => {
-        this.props.isFetchingFunc(true);
-        this.props.setCurrentPage(cp);
-        usersAPI.getUsersAPI(cp, this.props.pageSize).then(resp =>
-        {
-            this.props.isFetchingFunc(false);
-            this.props.setUser(resp.items)
-        });
-    }
-    followCB = (id) => {
-        this.followingCB(id, true);
-        usersAPI.followUserAPI(id).then(resp =>
-        {
-            if (resp.data.resultCode === 0) {
-                this.props.follow(id);
-            }
-            this.followingCB(id, false);
-        });
-    }
-    unfollowCB = (id) => {
-        this.followingCB(id, true);
-        usersAPI.unfollowUserAPI(`${id}`).then(resp =>
-        {
-            if (resp.data.resultCode === 0) {
-                this.props.unfollow(id);
-            }
-            this.followingCB(id, false);
-        });
-    }
-    followingCB = (id, s) => {
-        this.props.following(id, s);
-    }
+
 
     render() {
-        return <Users onChanged={this.onChanged}
+        return <Users onChanged={this.props.onChanged}
                       users={this.props.users}
-                      followCB={this.followCB}
-                      unfollowCB={this.unfollowCB}
+                      follow={this.props.follow}
+                      unfollow={this.props.unfollow}
                       totalCount={this.props.totalCount}
                       pageSize={this.props.pageSize}
                       isFetching={this.props.isFetching}
@@ -73,8 +39,6 @@ class UsersAPI extends React.Component {
                       followingCB={this.followingCB}/>
     }
 }
-
-// let AuthRedirectComponent = withAuthRedirect(UsersAPI);
 
 let mapStateToProps = (state) => {
     return {
@@ -87,26 +51,16 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default compose(connect(mapStateToProps, {
-    follow: followAC,
-    unfollow: unFollowAC,
-    setUser: setUsersAC,
-    setCurrentPage: setCurrentPageAC,
-    setTotalUsersCount: setTotalUsersCountAC,
-    isFetchingFunc: isFetchingAC,
-    following: followingAC,
-    setUserThunkCreator
-}),
-    withAuthRedirect)
-(UsersAPI);
-
-// export default connect(mapStateToProps, {
-//     follow: followAC,
-//     unfollow: unFollowAC,
-//     setUser: setUsersAC,
-//     setCurrentPage: setCurrentPageAC,
-//     setTotalUsersCount: setTotalUsersCountAC,
-//     isFetchingFunc: isFetchingAC,
-//     following: followingAC,
-//     setUserThunkCreator
-// })(AuthRedirectComponent);
+export default compose( connect( mapStateToProps, {
+        follow: follow,
+        unfollow: unfollow,
+        setUser: setUsersAC,
+        setCurrentPage: setCurrentPageAC,
+        setTotalUsersCount: setTotalUsersCountAC,
+        isFetchingFunc: isFetchingAC,
+        following: followingAC,
+        onChanged: onChanged,
+        setUserThunkCreator
+    } ),
+    withAuthRedirect )
+( UsersAPI );

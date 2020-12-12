@@ -13,32 +13,29 @@ let initState = {
     },
     isSignedIn: false
 }
-export const authThunkCreator = () => (dispatch) => {
-    return authAPI.authMeAPI().then(resp =>
-    {
-        if (resp.data.resultCode === 0) {
-            let {email, id, login} = resp.data.data
-            dispatch(authMe(email, id, login, true));
-        }
-    });
-}
-export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => {
-    authAPI.loginAPI(email, password, rememberMe).then(r => {
-        if (r.data.resultCode === 0) {
-            dispatch(authThunkCreator());
-        } else {
-            let messageError = r.data.messages.length > 0 ? r.data.messages[0] : "some error";
-            dispatch(stopSubmit("login", {_error: messageError}));
-        }
-    });
+export const authThunkCreator = () => async (dispatch) => {
+    const resp = await authAPI.authMeAPI();
+    if ( resp.data.resultCode === 0 ) {
+        const {email, id, login} = resp.data.data
+        dispatch( authMe( email, id, login, true ) );
+    }
 }
 
-export const logoutThunkCreator = () => (dispatch) => {
-    authAPI.logoutAPI().then(r => {
-        if (r.data.resultCode === 0) {
-            dispatch(authMe(null, null, null, false));
-        }
-    });
+export const loginThunkCreator = (email, password, rememberMe) => async (dispatch) => {
+   const r = await authAPI.loginAPI(email, password, rememberMe)
+    if ( r.data.resultCode === 0 ) {
+        dispatch( authThunkCreator() );
+    } else {
+        let messageError = r.data.messages.length > 0 ? r.data.messages[0] : "some error";
+        dispatch( stopSubmit( "login", {_error: messageError} ) );
+    }
+}
+
+export const logoutThunkCreator = () => async (dispatch) => {
+    const r = await authAPI.logoutAPI()
+    if ( r.data.resultCode === 0 ) {
+        dispatch( authMe( null, null, null, false ) );
+    }
 }
 
 export const authMe = (email, id, login, isSignedIn) => {

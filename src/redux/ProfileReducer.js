@@ -5,6 +5,7 @@ const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const SEND_LOGIN = 'SEND_LOGIN';
+const DELETE_POST = 'DELETE_POST';
 
 let initState = {
     posts: [
@@ -23,29 +24,24 @@ let initState = {
     }
 }
 
-export const setProfileThunkCreator = (userId) => (dispatch) => {
-    profileAPI.setProfileAPI(userId).then(resp =>
-    {
-        dispatch(setProfile(resp.data));
-    });
+export const setProfileThunkCreator = (userId) => async (dispatch) => {
+    const resp = await profileAPI.setProfileAPI( userId );
+    dispatch( setProfile( resp.data ) );
 }
 
-export const setStatusThunkCreator = (userId) => (dispatch) => {
-    if (!userId) {
+export const setStatusThunkCreator = (userId) => async (dispatch) => {
+    if ( !userId ) {
         userId = 2;
     }
-    profileAPI.setStatusAPI(userId).then(r => {
-        dispatch(setStatus(r.data))
-    });
+    const r = await profileAPI.setStatusAPI( userId );
+    dispatch( setStatus( r.data ) );
 }
 
-export const updateStatusThunkCreator = (status) => (dispatch) => {
-    profileAPI.updateStatusAPI(status).then(r => {
-        if (r.data.resultCode === 0) {
-            dispatch(setStatus(status))
-        }
-
-    });
+export const updateStatusThunkCreator = (status) => async (dispatch) => {
+    const r = await profileAPI.updateStatusAPI( status );
+    if ( r.data.resultCode === 0 ) {
+        dispatch( setStatus( status ) )
+    }
 }
 
 export const addPostAC = (post) => {
@@ -77,6 +73,15 @@ export const setProfile = (profile) => {
     });
 }
 
+export const deletePostAC = (id) => {
+    return (
+        {
+            type: DELETE_POST,
+            id
+        }
+    );
+}
+
 export const profileReducer = (state = initState, action) => {
     switch (action.type) {
         case ADD_POST: {
@@ -103,6 +108,10 @@ export const profileReducer = (state = initState, action) => {
 
             return stateCopy;
         }
+        case DELETE_POST:
+            return {
+                ...state, posts: state.posts.filter(e => e.id != action.id)
+            }
         default: return state;
     }
 }

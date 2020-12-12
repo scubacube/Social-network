@@ -1,24 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import {BrowserRouter} from "react-router-dom";
 import { store } from "./redux/reduxStore";
-import {Provider} from "react-redux";
-import {FAKE} from "./redux/UsersReducer";
-
-// setInterval(() => {
-//     store.dispatch(FAKE)
-// }, 1000);
+import MainApp from "./App";
 
 let rerender = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                    <App/>
-                </Provider>
-            </BrowserRouter>
+            <MainApp />
         </React.StrictMode>,
         document.getElementById('root')
     );
