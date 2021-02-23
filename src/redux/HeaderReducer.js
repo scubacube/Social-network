@@ -7,12 +7,12 @@ const SEND_LOGIN = 'SEND_LOGIN';
 const GET_CAPTCHA_URL_SUCCESS =  'GET_CAPTCHA_URL_SUCCESS';
 
 let initState = {
-    // data: {
-    //     email: null,
-    //     id: null,
-    //     login: null,
-    //
-    // },
+    data: {
+        email: null,
+        id: null,
+        login: null,
+
+    },
     isSignedIn: false,
     captchaUrl: null // if null then captcha isn't required
 }
@@ -25,7 +25,7 @@ export const authThunkCreator = () => async (dispatch) => {
 }
 
 export const loginThunkCreator = (email, password, rememberMe, captcha) => async (dispatch) => {
-    debugger
+
    const r = await authAPI.loginAPI(email, password, rememberMe, captcha);
    if ( r.data.resultCode === 0 ) {
         dispatch( authThunkCreator() );

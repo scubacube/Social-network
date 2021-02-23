@@ -67,6 +67,7 @@ export const saveProfileThunkCreator = (profile) => async (dispatch, getState) =
 }
 
 export const addPostAC = (post) => {
+    debugger
     return (
         {
             type: ADD_POST,
@@ -116,6 +117,7 @@ export const savePhotoAC = (photos) => {
 export const profileReducer = (state = initState, action) => {
     switch (action.type) {
         case ADD_POST: {
+            debugger
             let newPost = {
                 id: 10,
                 postText: action.post,
@@ -124,7 +126,7 @@ export const profileReducer = (state = initState, action) => {
             let stateCopy = {...state};
             stateCopy.posts = [...state.posts];
             stateCopy.posts.push(newPost);
-
+            stateCopy.newPostText = "";
             return stateCopy;
         }
         case SET_PROFILE: {

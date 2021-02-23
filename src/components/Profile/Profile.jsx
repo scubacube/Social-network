@@ -37,7 +37,9 @@ function Profile(props) {
             <img className={styles.avatar} src={props.profile.prof.photos.large || userPhoto} alt=""/>
             {props.isOwner && <input type={"file"} onChange={OnMainPhotoSelected}/> }
             <br/><br/>
-            <b>Status: </b><ProfileStatusWithHooks status={props.profile.status} updateStatus={props.updateStatus}/>
+            <b>Status: </b><ProfileStatusWithHooks status={props.profile.status}
+                                                   updateStatus={props.updateStatus}
+                                                   isOwner={props.isOwner}/>
             <br/>
             { editMode ?
                 <ProfileDataFormReduxForm initialValues={props.profile.prof}
@@ -49,7 +51,7 @@ function Profile(props) {
             {/*<ProfileData profile={props.profile}/>*/}
             <br/>
             <div>{posts}</div>
-            <SendPostFormReduxForm onSubmit={onSendPost}/>
+            {props.isOwner && <SendPostFormReduxForm onSubmit={onSendPost}/>}
         </div>
     );
 }
@@ -89,6 +91,7 @@ const Contact = ({contactKey, contactValue}) => {
 }
 
 let sendPostForm = (props) => {
+    debugger
     return (
         <form onSubmit={props.handleSubmit}>
             <Field name={"sendPost"} component={Textarea}

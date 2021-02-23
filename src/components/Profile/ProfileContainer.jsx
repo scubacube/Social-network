@@ -17,6 +17,7 @@ class ProfileContainer extends React.Component {
     constructor(props) {
         super(props);
     }
+
     refreshProfile() {
         let userId;
         !this.props.match.params.userId ? userId = this.props.signedInId : userId = this.props.match.params.userId;
@@ -58,6 +59,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         sendPost: (post) => {
+            debugger
             dispatch(addPostAC(post));
         },
         setProfileThunkCreator: (userId) => {
