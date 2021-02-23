@@ -23,8 +23,8 @@ let mapDispatchToProps = (dispatch) => {
         // authThunkCreator: () => {
         //     dispatch(authThunkCreator());
         // },
-        loginThunkCreator: (email, password, rememberMe) => {
-            dispatch(loginThunkCreator(email, password, rememberMe));
+        loginThunkCreator: (email, password, rememberMe, captcha) => {
+            dispatch(loginThunkCreator(email, password, rememberMe, captcha));
         },
         logoutThunkCreator: () => {
             dispatch(logoutThunkCreator());

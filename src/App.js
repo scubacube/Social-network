@@ -1,10 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import './App.css';
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {BrowserRouter, Route} from 'react-router-dom';
-// import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-// import MessagesContainer from "./components/Messages/MessagesContainer";
 import SidebarContainer from "./components/sidebar/SidebarContainer";
 import Login from "./components/Login/Login";
 import {connect, Provider} from "react-redux";
@@ -12,6 +10,8 @@ import {initializeAppThunkCreator} from "./redux/appReducer";
 import loading from "./assets/spinner.svg";
 import {store} from "./redux/reduxStore";
 import {withSuspense} from "./HOC/withSuspence";
+import {compose} from "redux";
+import {Redirect, Switch, withRouter} from "react-router";
 
 const MessagesContainer = React.lazy(() =>
     import("./components/Messages/MessagesContainer"));
@@ -19,9 +19,17 @@ const ProfileContainer = React.lazy(() =>
     import("./components/Profile/ProfileContainer"));
 
 class App extends React.Component {
+    // catchAllUnhandledErrors = (promiseRejectionEvent) => {
+    //     alert('some error occured');
+    // }
     componentDidMount() {
         this.props.initializeAppThunkCreator();
+        // window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
+    componentWillUnmount() {
+        // window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+    }
+
     render() {
         if (!this.props.initialized) {
             return <img src={loading}/>
@@ -33,10 +41,14 @@ class App extends React.Component {
                     <div className="row">
                         <SidebarContainer/>
                         <div className="app_wrapper_container">
-                            <Route path="/Profile/:userId?" render={withSuspense(ProfileContainer)}/>
-                            <Route path="/Users" render={() => < UsersContainer/>}/>
-                            <Route path="/Messages" render={withSuspense(MessagesContainer)}/>
-                            <Route path="/Login" render={() => < Login/>}/>
+                            <Switch>
+                                <Route path="/Profile/:userId?" render={withSuspense(ProfileContainer)}/>
+                                <Route exact path='/'><Redirect to='/Profile'/></Route>
+                                <Route path="/Users" render={() => < UsersContainer/>}/>
+                                <Route path="/Messages" render={withSuspense(MessagesContainer)}/>
+                                <Route path="/Login" render={() => < Login/>}/>
+                                <Route path="*" render={() => <div>Not found!</div>}/>
+                            </Switch>
                         </div>
                     </div>
                 </div>
@@ -49,7 +61,8 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
 
-const AppContainer = connect(mapStateToProps, {initializeAppThunkCreator})(App);
+const AppContainer =
+    compose(withRouter, connect(mapStateToProps, {initializeAppThunkCreator}))(App);
 
 const MainApp = (props) => {
     return (

@@ -1,6 +1,11 @@
 import React from 'react';
 import Profile from './Profile';
-import {onPostChangeAC, addPostAC, setProfileThunkCreator, setStatusThunkCreator, loginThunkCreator} from './../../redux/ProfileReducer';
+import {
+    addPostAC,
+    savePhotoThunkCreator, saveProfileThunkCreator,
+    setProfileThunkCreator,
+    setStatusThunkCreator
+} from './../../redux/ProfileReducer';
 import {connect} from "react-redux";
 import {Redirect, withRouter} from "react-router";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
@@ -12,17 +17,32 @@ class ProfileContainer extends React.Component {
     constructor(props) {
         super(props);
     }
-    componentDidMount() {
-        let userId = this.props.signedInId;
+    refreshProfile() {
+        let userId;
+        !this.props.match.params.userId ? userId = this.props.signedInId : userId = this.props.match.params.userId;
         this.props.setProfileThunkCreator(userId);
         this.props.setStatusThunkCreator(userId);
+
+        // this.props.profile.prof && this.props.savePhotoThunkCreator(this.props.profile.prof.photos.large);
+        // this.props.savePhotoThunkCreator(p);
     }
+    componentDidMount() {
+        this.refreshProfile();
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.params.userId != prevProps.match.params.userId) {
+            this.refreshProfile();
+        }
+    }
+
     render() {
         return <Profile {...this.props}
+                        isOwner={!this.props.match.params.userId}
                         profile={this.props.profile}
                         status={this.props.status}
                         updateStatus={this.props.updateStatusThunkCreator}
-                        sendLogin={this.props.loginThunkCreator}/>
+                        sendLogin={this.props.loginThunkCreator}
+                        savePhoto={this.props.savePhoto}/>
     }
 }
 
@@ -51,6 +71,12 @@ let mapDispatchToProps = (dispatch) => {
         },
         logoutThunkCreator: () => {
             dispatch(logoutThunkCreator());
+        },
+        savePhoto: (photo) => {
+            dispatch(savePhotoThunkCreator(photo));
+        },
+        saveProfile: (profile) => {
+            dispatch(saveProfileThunkCreator(profile))
         }
     }
 }

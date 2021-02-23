@@ -1,11 +1,13 @@
 import {authAPI, profileAPI} from "../components/API/Api";
 import {act} from "@testing-library/react";
+import {getUsers} from "./userSelectors";
 
 const ADD_POST = 'ADD-POST';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const SEND_LOGIN = 'SEND_LOGIN';
 const DELETE_POST = 'DELETE_POST';
+const SAVE_PHOTO_SUCCESSED = 'SAVE_PHOTO_SUCCESSED';
 
 let initState = {
     posts: [
@@ -38,9 +40,29 @@ export const setStatusThunkCreator = (userId) => async (dispatch) => {
 }
 
 export const updateStatusThunkCreator = (status) => async (dispatch) => {
-    const r = await profileAPI.updateStatusAPI( status );
+    try {
+        const r = await profileAPI.updateStatusAPI( status );
+        if ( r.data.resultCode === 0 ) {
+            dispatch( setStatus( status ) )
+        }
+    } catch (error) {
+        debugger
+    }
+}
+
+export const savePhotoThunkCreator = (photos) => async (dispatch) => {
+    const r = await profileAPI.savePhotoAPI( photos );
     if ( r.data.resultCode === 0 ) {
-        dispatch( setStatus( status ) )
+        dispatch( savePhotoAC( r.data.data.photos ) )
+    }
+}
+
+export const saveProfileThunkCreator = (profile) => async (dispatch, getState) => {
+    const uId = getState().auth.data.id;
+    const r = await profileAPI.saveProfileAPI( profile );
+
+    if ( r.data.resultCode === 0 ) {
+        dispatch( setProfileThunkCreator( uId ) );
     }
 }
 
@@ -82,6 +104,15 @@ export const deletePostAC = (id) => {
     );
 }
 
+export const savePhotoAC = (photos) => {
+    return (
+        {
+            type: SAVE_PHOTO_SUCCESSED,
+            photos
+        }
+    )
+}
+
 export const profileReducer = (state = initState, action) => {
     switch (action.type) {
         case ADD_POST: {
@@ -108,10 +139,16 @@ export const profileReducer = (state = initState, action) => {
 
             return stateCopy;
         }
-        case DELETE_POST:
+        case DELETE_POST: {
             return {
                 ...state, posts: state.posts.filter(e => e.id != action.id)
             }
+        }
+        case SAVE_PHOTO_SUCCESSED: {
+            let stateCopy = {...state};
+            stateCopy.prof.photos = action.photos;
+            return stateCopy;
+        }
         default: return state;
     }
 }

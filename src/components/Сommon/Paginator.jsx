@@ -3,7 +3,6 @@ import styles from "./Paginator.module.css";
 import cn from "classnames";
 
 let Paginator = ({totalCount, pageSize, portionSize = 10, onChanged, currentPage}) => {
-    // debugger
     let pagesCount = Math.ceil( totalCount / pageSize );
     let arrayOfPages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -25,9 +24,7 @@ let Paginator = ({totalCount, pageSize, portionSize = 10, onChanged, currentPage
             arrayOfPages.filter(p => p >= leftPortionPageNumber && p <= rightPortionNumber)
                 .map( p => {
                     return <span onClick={() => onChanged( p, pageSize )}
-                                 className={cn({
-                                     [styles.selectedPage]: currentPage === p
-                                 }, styles.pageNumber)}>{p}</span>
+                                 className={cn({[styles.selectedPage]: currentPage === p}, styles.pageNumber)}>{p}</span>
                 } )
         }
         {

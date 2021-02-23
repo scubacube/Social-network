@@ -6,26 +6,16 @@ import {compose} from "redux";
 import {authThunkCreator, loginThunkCreator, logoutThunkCreator} from "../../redux/HeaderReducer";
 import { Field, reduxForm } from 'redux-form'
 import handleSubmit from "redux-form/lib/handleSubmit";
-import { Element} from "../Сommon/FormsControls";
+import {createField, Element, Input} from "../Сommon/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import styles from "./../Сommon/FormsControls.module.css";
 
-// class LoginContainer extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     }
-//     componentDidMount() {
-//     }
-//     render() {
-//         return <Login {...this.props}
-//                       sendLogin={this.props.loginThunkCreator}
-//                       forms={this.props.forms}/>
-//     }
-// }
 let mapStateToProps = (state) => {
+    // debugger
     return {
         forms: state.form,
-        isSignedIn: state.auth.isSignedIn
+        isSignedIn: state.auth.isSignedIn,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -33,24 +23,18 @@ let mapDispatchToProps = (dispatch) => {
         authThunkCreator: () => {
             dispatch(authThunkCreator());
         },
-        loginThunkCreator: (email, password, rememberMe) => {
-            dispatch(loginThunkCreator(email, password, rememberMe));
+        loginThunkCreator: (email, password, rememberMe, captcha) => {
+            dispatch(loginThunkCreator(email, password, rememberMe, captcha));
         },
         logoutThunkCreator: () => {
             dispatch(logoutThunkCreator());
         }
     }
 }
-//
-// export const LoginContainerWrapped = compose(connect(mapStateToProps, mapDispatchToProps),
-//     withRouter,
-//     withAuthRedirect)
-// (LoginContainer);
 
 const maxLength20 = maxLengthCreator(20);
 const loginInput = Element("input");
 const LoginForm = (props) => {
-
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -72,6 +56,11 @@ const LoginForm = (props) => {
                        type={"checkbox"}
                        component={"input"}/> remember me
             </div>
+
+            {props.captchaUrl && <img src={props.captchaUrl}/>}
+            {props.captchaUrl &&
+            createField("Symbols from image", "captcha", [required], Input )}
+
             { props.error && <div className={styles.formError}>
                 {props.error}
                 </div>
@@ -87,7 +76,7 @@ const LoginReduxForm = reduxForm({ form: "login" })(LoginForm);
 
 const Login = (props) => {
     const onSubmit1 = (formData) => {
-        props.loginThunkCreator(formData.email, formData.password, formData.rememberMe);
+        props.loginThunkCreator(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
     if (props.isSignedIn) {
         return <Redirect to={"/Profile"} />
@@ -95,7 +84,7 @@ const Login = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit1} />
+            <LoginReduxForm onSubmit={onSubmit1} captchaUrl={props.captchaUrl}/>
         </div>
     );
 }
