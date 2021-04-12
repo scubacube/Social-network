@@ -1,5 +1,5 @@
 import {act} from "@testing-library/react";
-import {profileAPI, usersAPI} from "../components/API/Api";
+import {profileAPI, usersAPI} from "../components/api/Api";
 import {setProfile} from "./ProfileReducer";
 import {updateObjectInArray} from "../utils/object-helpers";
 

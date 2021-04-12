@@ -1,5 +1,5 @@
 import {act} from "@testing-library/react";
-import {authAPI} from "../components/API/Api";
+import {authAPI} from "../components/api/Api";
 import {stopSubmit} from "redux-form";
 import {authThunkCreator} from "./HeaderReducer";
 

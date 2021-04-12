@@ -4,7 +4,7 @@ import styles from "./Users.module.css";
 import userPhoto from "./../../assets/user.png";
 import loading from "./../../assets/spinner.svg";
 import {NavLink} from "react-router-dom";
-import Paginator from "../Сommon/Paginator";
+import Paginator from "../common/Paginator";
 
 let Users = (props) => {
     return <>

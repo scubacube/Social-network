@@ -8,8 +8,8 @@ import {
     followingAC, setUserThunkCreator, onChanged, follow, unfollow
 } from "../../redux/UsersReducer";
 import Users from "./Users";
-import {usersAPI} from "../API/Api";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {usersAPI} from "../api/Api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
     getCurrentPage,

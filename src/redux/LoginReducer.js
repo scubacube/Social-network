@@ -1,4 +1,4 @@
-// import {authAPI} from "../components/API/Api";
+// import {authAPI} from "../components/api/Api";
 //
 // const SEND_LOGIN = 'SEND_LOGIN';
 //

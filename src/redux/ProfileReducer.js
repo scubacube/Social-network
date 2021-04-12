@@ -1,4 +1,4 @@
-import {authAPI, profileAPI} from "../components/API/Api";
+import {authAPI, profileAPI} from "../components/api/Api";
 import {act} from "@testing-library/react";
 import {getUsers} from "./userSelectors";
 

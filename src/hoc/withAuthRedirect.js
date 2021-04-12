@@ -13,7 +13,7 @@ export const withAuthRedirect = (Component) => {
         render() {
             if (!this.props.isSignedIn) {
                 // debugger
-                return <Redirect to={"/Login"} />
+                return <Redirect to={"/login"} />
             }
             else return <Component {...this.props}/>
         }

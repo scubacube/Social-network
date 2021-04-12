@@ -13,7 +13,7 @@ function Header(props) {
                 {props.auth.isSignedIn
                     ? <span>{props.auth.data.login } /
                         <button onClick={props.logoutThunkCreator}>Log out</button></span>
-                    : <NavLink to={"/Login"}>Login</NavLink> }
+                    : <NavLink to={"/login"}>Login</NavLink> }
             </div>
         </header>
     );

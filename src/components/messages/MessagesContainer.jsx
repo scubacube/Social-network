@@ -2,7 +2,7 @@ import React from "react";
 import Messages from './Messages';
 import {addMessageAC, onChangeAC} from './../../redux/MessagesReducer';
 import {connect} from "react-redux";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 let mapStateToProps = (state) => {

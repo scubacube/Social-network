@@ -53,9 +53,9 @@ import {profileReducer} from "./ProfileReducer";
 //             newMessageText: "enter some text here..."
 //         },
 //         sidebar: [
-//             {name: "Profile"},
-//             {name: "Messages"},
-//             {name: "Users"}
+//             {name: "profile"},
+//             {name: "messages"},
+//             {name: "users"}
 //         ]
 //     },
 //     _rerender() {

@@ -4,7 +4,7 @@ import loading from "../../assets/spinner.svg";
 import styles from "./Profile.module.css";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
-import {Element} from "../Сommon/FormsControls";
+import {Element} from "../common/FormsControls";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "./../../assets/user.png";
 import ProfileDataFormReduxForm from "./ProfileDataForm";

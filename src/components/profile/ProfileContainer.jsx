@@ -8,7 +8,7 @@ import {
 } from './../../redux/ProfileReducer';
 import {connect} from "react-redux";
 import {Redirect, withRouter} from "react-router";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {updateStatusThunkCreator} from "../../redux/ProfileReducer";
 import {logoutThunkCreator} from "../../redux/HeaderReducer";

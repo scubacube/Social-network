@@ -1,13 +1,13 @@
 // import React from 'react';
 // import {connect} from "react-redux";
 // import {Redirect, withRouter} from "react-router";
-// import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+// import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 // import {compose} from "redux";
-// import Login from "./Login";
+// import login from "./login";
 // import {authThunkCreator, loginThunkCreator, logoutThunkCreator} from "../../redux/HeaderReducer";
 // import { Field, reduxForm } from 'redux-form'
 // import handleSubmit from "redux-form/lib/handleSubmit";
-// import { Element} from "../Сommon/FormsControls";
+// import { Element} from "../common/FormsControls";
 // import {maxLengthCreator, required} from "../../utils/validators/validators";
 //
 // class LoginContainer extends React.Component {
@@ -17,7 +17,7 @@
 //     componentDidMount() {
 //     }
 //     render() {
-//         return <Login {...this.props}
+//         return <login {...this.props}
 //                       sendLogin={this.props.loginThunkCreator}
 //                       forms={this.props.forms}/>
 //     }
@@ -58,7 +58,7 @@
 //                 <Field name={"email"}
 //                        type={"text"}
 //                        component={loginInput}
-//                        placeholder={"Login"}
+//                        placeholder={"login"}
 //                        validate={[required, maxLength20]}/>
 //             </div>
 //             <div>
@@ -75,7 +75,7 @@
 //                        validate={[required]}/> remember me
 //             </div>
 //             <div>
-//                 <button>Login</button>
+//                 <button>login</button>
 //             </div>
 //         </form>
 //     );
@@ -83,16 +83,16 @@
 //
 // const LoginReduxForm = reduxForm({ form: "login" })(LoginForm);
 //
-// const Login = (props) => {
+// const login = (props) => {
 //     const onSubmit1 = (formData) => {
 //         props.loginThunkCreator(formData.email, formData.password, formData.rememberMe);
 //     }
 //
 //     return (
 //         <div>
-//             <h1>Login</h1>
+//             <h1>login</h1>
 //             <LoginReduxForm onSubmit={onSubmit1} />
 //         </div>
 //     );
 // }
-// export default Login;
+// export default login;

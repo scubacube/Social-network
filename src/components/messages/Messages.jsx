@@ -5,7 +5,7 @@ import styles from './Messages.module.css'
 // import MessageForm from "./MessageForm";
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
-import {Element} from "../Сommon/FormsControls";
+import {Element} from "../common/FormsControls";
 
 const Textarea = Element("textarea");
 

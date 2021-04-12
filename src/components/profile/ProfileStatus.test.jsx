@@ -2,7 +2,7 @@ import React from 'react';
 import { create } from "react-test-renderer";
 import ProfileStatus from "./ProfileStatus";
 
-describe("Profile status component", () => {
+describe("profile status component", () => {
     test("status from props should be in a state", () => {
         const component = create(<ProfileStatus status="something interesing..." />);
         const instance = component.getInstance();

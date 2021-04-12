@@ -1,5 +1,5 @@
 import {act} from "@testing-library/react";
-import {authAPI, securityPI} from "../components/API/Api";
+import {authAPI, securityPI} from "../components/api/Api";
 import {stopSubmit} from "redux-form";
 
 const AUTH_ME = "AUTH_ME";
@@ -27,6 +27,7 @@ export const authThunkCreator = () => async (dispatch) => {
 export const loginThunkCreator = (email, password, rememberMe, captcha) => async (dispatch) => {
 
    const r = await authAPI.loginAPI(email, password, rememberMe, captcha);
+   debugger
    if ( r.data.resultCode === 0 ) {
         dispatch( authThunkCreator() );
    } else {

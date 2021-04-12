@@ -1,22 +1,22 @@
 import React from 'react';
 import './App.css';
-import HeaderContainer from "./components/Header/HeaderContainer";
+import HeaderContainer from "./components/header/HeaderContainer";
 import {BrowserRouter, Route} from 'react-router-dom';
-import UsersContainer from "./components/Users/UsersContainer";
+import UsersContainer from "./components/users/UsersContainer";
 import SidebarContainer from "./components/sidebar/SidebarContainer";
-import Login from "./components/Login/Login";
+import Login from "./components/login/Login";
 import {connect, Provider} from "react-redux";
 import {initializeAppThunkCreator} from "./redux/appReducer";
 import loading from "./assets/spinner.svg";
 import {store} from "./redux/reduxStore";
-import {withSuspense} from "./HOC/withSuspence";
+import {withSuspense} from "./hoc/withSuspence";
 import {compose} from "redux";
 import {Redirect, Switch, withRouter} from "react-router";
 
 const MessagesContainer = React.lazy(() =>
-    import("./components/Messages/MessagesContainer"));
+    import("./components/messages/MessagesContainer"));
 const ProfileContainer = React.lazy(() =>
-    import("./components/Profile/ProfileContainer"));
+    import("./components/profile/ProfileContainer"));
 
 class App extends React.Component {
     // catchAllUnhandledErrors = (promiseRejectionEvent) => {

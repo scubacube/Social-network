@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {Redirect, withRouter} from "react-router";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {authThunkCreator, loginThunkCreator, logoutThunkCreator} from "../../redux/HeaderReducer";
 import { Field, reduxForm } from 'redux-form'
 import handleSubmit from "redux-form/lib/handleSubmit";
-import {createField, Element, Input} from "../Сommon/FormsControls";
+import {createField, Element, Input} from "../common/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
-import styles from "./../Сommon/FormsControls.module.css";
+import styles from "../common/FormsControls.module.css";
 
 let mapStateToProps = (state) => {
     // debugger
@@ -41,7 +41,7 @@ const LoginForm = (props) => {
                 <Field name={"email"}
                        type={"text"}
                        component={loginInput}
-                       placeholder={"Login"}
+                       placeholder={"login"}
                        validate={[required, maxLength20]}/>
             </div>
             <div>
@@ -79,7 +79,7 @@ const Login = (props) => {
         props.loginThunkCreator(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
     if (props.isSignedIn) {
-        return <Redirect to={"/Profile"} />
+        return <Redirect to={"/profile"} />
     }
     return (
         <div>
