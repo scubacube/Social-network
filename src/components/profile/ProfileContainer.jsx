@@ -7,7 +7,7 @@ import {
     setStatusThunkCreator
 } from './../../redux/ProfileReducer';
 import {connect} from "react-redux";
-import {Redirect, withRouter} from "react-router";
+import {withRouter} from "react-router";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {updateStatusThunkCreator} from "../../redux/ProfileReducer";
