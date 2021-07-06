@@ -2,7 +2,7 @@
   "name": "fix",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://eloquent-knuth-4ac6ac.netlify.app/",
+  "homepage": "https://eloquent-knuth-4ac6ac.netlify.app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
